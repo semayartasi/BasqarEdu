@@ -29,7 +29,6 @@ public class BasePOM {
         webElement.clear();
         webElement1.clear();
         webElement.sendKeys(text);
-
     }
 
     public String waitAndGetText(By locator){

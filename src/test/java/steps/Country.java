@@ -1,15 +1,11 @@
 package steps;
 
+import cucumber.api.PendingException;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import poms.CountryPOM;
 import poms.MenuPOM;
@@ -27,22 +23,25 @@ public class Country {
 
     }
 
-    @When("^I create a Country$")
-    public void iCreateACountry() throws InterruptedException {
-        CountryPOM countryPage=new CountryPOM();
-
-        countryPage.waitAndClick(countryPage.createButton);
-        countryPage.waitAndSend(countryPage.nameInput,"country name");
-        countryPage.waitAndClick(countryPage.saveButton);
-
-    }
 
     @Then("^country is successfully created$")
     public void countryIsSuccessfullyCreated() {
-
         CountryPOM countryPage=new CountryPOM();
         String actual= countryPage.waitAndGetText(countryPage.alertDialog);
         Assert.assertEquals(actual,"Country successfully created");
+    }
+
+    @When("^I create \"([^\"]*)\" Country$")
+    public void iCreateCountry(String countryName) {
+        CountryPOM countryPage=new CountryPOM();
+        countryPage.waitAndClick(countryPage.createButton);
+        countryPage.waitAndSend(countryPage.nameInput,countryName);
+        countryPage.waitAndClick(countryPage.saveButton);
+    }
+
+    @And("^\"([^\"]*)\" country does not exist$")
+    public void countryDoesNotExist(String arg0) {
 
     }
+
 }
