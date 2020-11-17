@@ -40,6 +40,6 @@ public class Edit_Country {
 
     @When("^I edit \"([^\"]*)\" to \"([^\"]*)\" Country$")
     public void iEditToCountry(String arg0, String arg1)  {
-       
+
     }
 }

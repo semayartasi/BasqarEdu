@@ -15,6 +15,7 @@ public class CountryPOM extends BasePOM{
     public By nameInput=By.cssSelector("[formcontrolname=\"name\"]> input");
     public By saveButton=By.tagName("ms-save-button");
     public By alertDialog=By.cssSelector("div[role='alertdialog']");
+    public By nameSearch=By.cssSelector("div[role='alertdialog']");
 
 
 }
